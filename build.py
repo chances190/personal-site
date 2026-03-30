@@ -117,6 +117,10 @@ class Builder:
             page = self.render_page(title, html, "./")
             output = self.output_dir / f"{name}.html"
             output.write_text(page)
+            
+            # home.md becomes index.html for GitHub Pages
+            if name == "home":
+                (self.output_dir / "index.html").write_text(page)
 
     def build_blog(self):
         """Build blog posts and index."""
